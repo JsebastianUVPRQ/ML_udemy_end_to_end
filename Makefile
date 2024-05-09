@@ -1,23 +1,17 @@
-# Make all targets .PHONY
-.PHONY: $(shell sed -n -e '/^$$/ { n ; /^[^ .\#][^ ]*:/ { s/:.*$$// ; p ; } ; }' $(MAKEFILE_LIST))
+WHAT_TO_PRINT = "lOREM IPSUM"
+LS_OUTPUT = $(shell ls)
 
-SHELL = /usr/bin/env bash
-USER_NAME = $(shell whoami)
-USER_ID = $(shell id -u)
-HOST_NAME = $(shell hostname)
+print-hello-world:
+	@echo "Hello, World!"
 
-ifeq (, $(shell which docker-compose))
-	DOCKER_COMPOSE_COMMAND = docker compose
-else
-	DOCKER_COMPOSE_COMMAND = docker-compose
-endif
+print-hello-world-again: print-hello-world
+	@echo "Hello World Again!"
 
-SERVICE_NAME = app
-CONTAINER_NAME = cybulde-template-container
+print-macro:
+	@echo $(WHAT_TO_PRINT)
 
-DIRS_TO_VALIDATE = cybulde
-DOCKER_COMPOSE_RUN = $(DOCKER_COMPOSE_COMMAND) run --rm $(SERVICE_NAME)
-DOCKER_COMPOSE_EXEC = $(DOCKER_COMPOSE_COMMAND) exec $(SERVICE_NAME)
+print-ls-ouput:
+	@echo $(LS_OUTPUT)
 
 export
 
