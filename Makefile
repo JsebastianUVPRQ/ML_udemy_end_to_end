@@ -1,6 +1,12 @@
 WHAT_TO_PRINT = "lOREM IPSUM"
 LS_OUTPUT = $(shell ls)
 
+ifeq ($(WHAT_TO_PRINT), "lOREM IPSUM") 
+	PRINT_THIS = "Anyway"
+else
+	PRINT_THIS = "That's it"
+endif	
+
 print-hello-world:
 	@echo "Hello, World!"
 
@@ -13,6 +19,9 @@ print-macro:
 print-ls-ouput:
 	@echo $(LS_OUTPUT)
 
+print-if-else:
+	@echo $(PRINT_THIS)
+##-------------------------------------------
 export
 
 # Returns true if the stem is a non-empty environment variable, or else raises an error.
